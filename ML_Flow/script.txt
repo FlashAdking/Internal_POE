@@ -1,0 +1,22 @@
+# ==========================================
+# Windows Commands to Run MLFlow Project
+# ==========================================
+
+# 1. Open Command Prompt or PowerShell in the 'ML_Flow' directory
+
+# 2. Create a virtual environment
+python -m venv venv
+
+# 3. Activate the virtual environment
+venv\Scripts\activate
+
+# 4. Install dependencies
+pip install -r req.txt
+
+# 5. Run the Training script
+python train.py
+
+# 6. View the MLFlow UI to see tracked metrics
+mlflow ui --backend-store-uri sqlite:///mlflow.db
+
+# Note: The UI will open at http://127.0.0.1:5000

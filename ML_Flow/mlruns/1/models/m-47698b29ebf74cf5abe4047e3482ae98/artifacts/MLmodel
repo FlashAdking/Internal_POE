@@ -1,0 +1,23 @@
+artifact_path: /run/media/aditya/New Volume/Internal_POE/ML_Flow/mlruns/1/models/m-47698b29ebf74cf5abe4047e3482ae98/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.4
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.13.0
+model_id: m-47698b29ebf74cf5abe4047e3482ae98
+model_size_bytes: 217458
+model_uuid: m-47698b29ebf74cf5abe4047e3482ae98
+prompts: null
+run_id: e9d88797c3a04dcd84f52d6657143852
+utc_time_created: '2026-06-08 18:25:28.686814'

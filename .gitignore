@@ -1,0 +1,19 @@
+# Virtual environments
+automl/automl/
+bentoML/bento_env/
+FastAPI/fastapi_env/
+Flask_assn/FLASK/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+.env.*
+
+# Databases
+instance/
+*.db
+*.sqlite3

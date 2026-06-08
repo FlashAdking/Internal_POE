@@ -1,0 +1,23 @@
+# ==========================================
+# Windows Commands to Run BentoML Project
+# ==========================================
+
+# 1. Open Command Prompt or PowerShell in the 'bentoML' directory
+
+# 2. Create a virtual environment
+python -m venv venv
+
+# 3. Activate the virtual environment
+venv\Scripts\activate
+
+# 4. Install dependencies
+pip install -r req.txt
+
+# 5. Train the model (must be done before serving so the model is saved locally)
+python train.py
+
+# 6. Run the BentoML API Server
+bentoml serve service:IrisPredictor
+
+# 7. (Optional) Run test script in another terminal to test the API
+# python test.py

@@ -1,0 +1,8 @@
+flask
+joblib
+flask-sqlalchemy
+flask-cors
+category_encoders
+scikit-learn
+python-dotenv
+pymysql

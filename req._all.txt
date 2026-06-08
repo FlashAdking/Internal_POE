@@ -1,0 +1,27 @@
+# Combined requirements for all projects (AutoML, BentoML, FastAPI, Flask, MLFlow)
+# Using latest versions to avoid compilation conflicts in a single virtual environment
+
+# Machine Learning & Data Processing
+scikit-learn
+pandas
+numpy
+joblib
+category_encoders
+
+# AutoML & Model Serving/Tracking
+flaml
+bentoml
+mlflow
+
+# Web Frameworks (FastAPI & Flask)
+fastapi
+uvicorn
+flask
+flask-cors
+
+# Database & Environment Configuration
+sqlalchemy
+flask-sqlalchemy
+mysql-connector-python
+pymysql
+python-dotenv

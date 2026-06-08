@@ -1,0 +1,3 @@
+Unique Education Levels: ['Bachelor', 'Bachelors', 'Diploma', 'High School', 'Master', 'Masters', 'PhD']
+Unique Industries: ['Healthcare', 'Telecom', 'Media', 'Retail', 'Manufacturing', 'Education', 'Finance', 'Technology', 'Consulting', 'Government']
+Unique Locations: ['India', 'Australia', 'Singapore', 'Canada', 'Sweden', 'USA', 'Netherlands', 'Remote', 'Germany', 'UK']

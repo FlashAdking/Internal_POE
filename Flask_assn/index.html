@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+</head>
+
+<body style=" 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    
+">
+    <form id="dataForm">
+        <div>
+            <label for="experience">Years of Experience (0-15):</label>
+            <input type="number" id="experience" name="experience" min="0" max="15" required>
+        </div>
+
+        <div>
+            <label for="certifications">Certifications (0-6):</label>
+            <input type="number" id="certifications" name="certifications" min="0" max="6" required>
+        </div>
+
+        <!-- Placeholder for allowed_values.txt values -->
+        <div>
+            <label for="education_level">Education Level:</label>
+            <select id="education_level" name="education_level">
+                <option value="">Select an option</option>
+                <option value="Bachelor">Bachelor</option>
+                <option value="Bachelors">Bachelors</option>
+                <option value="Diploma">Diploma</option>
+                <option value="High School">High School</option>
+                <option value="Master">Master</option>
+                <option value="Masters">Masters</option>
+                <option value="PhD">PhD</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="industry">Industry:</label>
+            <select id="industry" name="industry">
+                <option value="">Select an option</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Telecom">Telecom</option>
+                <option value="Media">Media</option>
+                <option value="Retail">Retail</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Education">Education</option>
+                <option value="Finance">Finance</option>
+                <option value="Technology">Technology</option>
+                <option value="Consulting">Consulting</option>
+                <option value="Government">Government</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="location">Location:</label>
+            <select id="location" name="location">
+                <option value="">Select an option</option>
+                <option value="India">India</option>
+                <option value="Australia">Australia</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Canada">Canada</option>
+                <option value="Sweden">Sweden</option>
+                <option value="USA">USA</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Remote">Remote</option>
+                <option value="Germany">Germany</option>
+                <option value="UK">UK</option>
+            </select>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const experience = document.getElementById('experience').value;
+            const certifications = document.getElementById('certifications').value;
+
+            const data = {
+                experience: experience,
+                certifications: certifications,
+                education_level: document.getElementById('education_level').value,
+                industry: document.getElementById('industry').value,
+                location: document.getElementById('location').value
+            };
+
+            // Empty fetch URL as requested
+            const res = await fetch('http://localhost:8000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            const prediction = await res.json()
+            console.log("prediction : ", prediction)
+
+            const div = document.getElementById('result')
+
+            div.innerHTML = `
+            <h3>Expected Salary: ₹${prediction.prediction.toFixed(2)}</h3>
+            `
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Form</title>
+</head>
+
+<body>
+    <h2>Loan Details Form</h2>
+    <form id="loanForm">
+        <div>
+            <label for="CreditScore">Credit Score:</label>
+            <input type="number" id="CreditScore" name="CreditScore" required>
+        </div>
+        <br>
+
+        <div>
+            <label for="Income">Income:</label>
+            <input type="number" id="Income" name="Income" required>
+        </div>
+        <br>
+
+        <div>
+            <label for="LoanAmount">Loan Amount:</label>
+            <input type="number" id="LoanAmount" name="LoanAmount" required>
+        </div>
+        <br>
+
+        <div>
+            <label for="LoanTerm">Loan Term:</label>
+            <input type="number" id="LoanTerm" name="LoanTerm" required>
+        </div>
+        <br>
+
+        <div>
+            <label for="EmploymentStatus">Employment Status:</label>
+            <select id="EmploymentStatus" name="EmploymentStatus" required>
+                <option value="Employed">Employed</option>
+                <option value="Unemployed">Unemployed</option>
+                <option value="Self-Employed">Self-Employed</option>
+            </select>
+        </div>
+        <br>
+
+        <div>
+            <label for="HasDefaults">Has Defaults:</label>
+            <select id="HasDefaults" name="HasDefaults" required>
+                <option value="0">No (0)</option>
+                <option value="1">Yes (1)</option>
+            </select>
+        </div>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="responseOutput" style="margin-top: 20px;"></div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Retrieve and parse values from the form
+            const creditScore = parseInt(document.getElementById('CreditScore').value, 10);
+            const income = parseFloat(document.getElementById('Income').value);
+            const loanAmount = parseFloat(document.getElementById('LoanAmount').value);
+            const loanTerm = parseInt(document.getElementById('LoanTerm').value, 10);
+            const employmentStatus = document.getElementById('EmploymentStatus').value;
+            const hasDefaults = parseInt(document.getElementById('HasDefaults').value, 10);
+
+            // Construct payload matching the requested format (with arrays)
+            const payload = {
+                "CreditScore": [creditScore],
+                "Income": [income],
+                "LoanAmount": [loanAmount],
+                "LoanTerm": [loanTerm],
+                "EmploymentStatus": [employmentStatus],
+                "HasDefaults": [hasDefaults]
+            };
+
+            const outputDiv = document.getElementById('responseOutput');
+            outputDiv.innerHTML = "<em>Submitting data...</em>";
+
+
+            const resp = await fetch("http://localhost:5000/predict",
+                {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                })
+
+            const data = await resp.json();
+
+            console.log(data);
+            
+            // data.prediction == 1 loan aproved else not aproved 
+            if(data.prediction == 1){
+                document.getElementById('responseOutput').innerHTML = `<strong>Loan Approved!</strong>`;
+            }else{
+                document.getElementById('responseOutput').innerHTML = `<strong>Loan Not Approved!</strong>`;
+            }
+
+        });
+    </script>
+</body>
+
+</html>
